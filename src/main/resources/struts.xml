@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+   "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+   "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="html5bootstrap" />
+	<constant name="struts.custom.i18n.resources" value="global" /><!-- fichier properties global a toute l'application : global.properties -->
+	<constant name="struts.action.extension" value="" /><!-- on n'a plus le ".action" a trainer dans les urls -->
+	<constant name="struts.enable.SlashesInActionNames" value="true" /><!--	For multiple wildcards -->
+	<constant name="struts.i18n.encoding" value="UTF-8" /><!-- default encoding -->
+	<constant name="struts.locale" value="fr_FR" /><!-- default locale -->
+	<constant name="struts.action.excludePattern" value="/static/.*?" /><!-- not resolve js resources as action -->
+	<constant name="struts.actionValidatorManager" value="org.objectweb.telosys.strutsutils.CustomActionValidatorManager" />
+
+	<package name="default" extends="struts-default">
+
+		<!-- Custom interceptor -->
+		<interceptors>
+			<interceptor-stack name="appliWebDefaultStack">
+				<interceptor-ref name="exception" />
+				<interceptor-ref name="alias" />
+				<interceptor-ref name="servletConfig" />
+				<interceptor-ref name="i18n" />
+				<interceptor-ref name="prepare" />
+				<interceptor-ref name="chain" />
+				<interceptor-ref name="scopedModelDriven" />
+				<interceptor-ref name="modelDriven" />
+				<interceptor-ref name="fileUpload" />
+				<interceptor-ref name="checkbox" />
+				<interceptor-ref name="multiselect" />
+				<interceptor-ref name="staticParams" />
+				<interceptor-ref name="actionMappingParams" />
+				<interceptor-ref name="params">
+					<param name="excludeParams">dojo\..*,^struts\..*,^css\..*,^javascript\..*,^img\..*</param>
+				</interceptor-ref>
+				<interceptor-ref name="conversionError" />
+				<interceptor-ref name="validation">
+				    <param name="validateAnnotatedMethodOnly">false</param>
+			      	<param name="excludeMethods">input,back,cancel,browse</param>
+			   	</interceptor-ref>
+			   	<interceptor-ref name="workflow">
+			      	<param name="excludeMethods">input,back,cancel,browse</param>
+			   	</interceptor-ref>
+				<interceptor-ref name="debugging" />
+			</interceptor-stack>
+
+		</interceptors>
+		
+		<!-- Default interceptor -->
+		<default-interceptor-ref name="appliWebDefaultStack" />
+		
+		<default-action-ref name="UnderConstruction" />
+
+		<global-results>
+            <result name="Exception">/WEB-INF/pages/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="javax.persistence.PersistenceException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.EntityExistsException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.EntityNotFoundException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.LockTimeoutException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.NonUniqueResultException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.NoResultException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.OptimisticLockException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.PessimisticLockException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.QueryTimeoutException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.RollbackException" result="Exception"/>
+            <exception-mapping exception="javax.persistence.TransactionRequiredException" result="Exception"/>
+            
+            <exception-mapping exception="java.lang.Exception" result="Exception"/>
+        </global-exception-mappings>
+        
+		<!-- Default action -->
+		<action name="UnderConstruction">
+			<result>/WEB-INF/pages/index.jsp</result>
+		</action>
+        
+		<!-- Generic actions with wildcards -->
+		<action name="*/*/*" class="org.demo.{1}.action.Actions" method="{2}">
+			<param name="restid">{3}</param>
+			<result name="form">/WEB-INF/pages/{1}/{1}.jsp</result>
+			<result name="input">/WEB-INF/pages/{1}/{1}.jsp</result>
+			<result name="list">/WEB-INF/pages/{1}/{1}List.jsp</result>
+			<result name="success">/WEB-INF/pages/{1}/{1}.jsp</result>
+		</action>
+
+	</package>
+</struts>
