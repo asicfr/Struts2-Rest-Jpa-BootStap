@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ page import="org.objectweb.telosys.strutsutils.EntityManagerHelper"%>
+<%@ page import="org.telosys.starterkits.strutsjpa.EntityManagerHelper"%>
 <!DOCTYPE html>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <html lang="en">

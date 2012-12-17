@@ -9,7 +9,7 @@
     </appender>
     
     
-    <logger name="org.objectweb.telosys" additivity="false">
+    <logger name="org.telosys" additivity="false">
         <level value="ERROR"/>
         <appender-ref ref="stdout"/>
     </logger>

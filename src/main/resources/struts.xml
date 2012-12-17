@@ -13,7 +13,10 @@
 	<constant name="struts.i18n.encoding" value="UTF-8" /><!-- default encoding -->
 	<constant name="struts.locale" value="fr_FR" /><!-- default locale -->
 	<constant name="struts.action.excludePattern" value="/static/.*?" /><!-- not resolve js resources as action -->
-	<constant name="struts.actionValidatorManager" value="org.objectweb.telosys.strutsutils.CustomActionValidatorManager" />
+	<constant name="struts.actionValidatorManager" value="org.telosys.starterkits.strutsjpa.CustomActionValidatorManager" />
+
+	<bean type="com.opensymphony.xwork2.conversion.impl.NumberConverter" name="strutsjpaNumberConverter" class="org.telosys.starterkits.strutsjpa.NumberConverter" scope="singleton"/>
+	<constant name="struts.converter.number" value="strutsjpaNumberConverter"/>
 
 	<package name="default" extends="struts-default">
 
