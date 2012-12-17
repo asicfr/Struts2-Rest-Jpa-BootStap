@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE validators PUBLIC
+          "-//Apache Struts//XWork Validator 1.0.2//EN"
+          "http://struts.apache.org/dtds/xwork-validator-1.0.2.dtd">
+<validators>
+
+
+    
+	<!-- Field not null in database -->
+	<field name="current.id" >
+		<field-validator type="required" >
+			<message key="requiredfield" />
+		</field-validator>
+	</field>
+
+
+
+	<!-- Field not null in database -->
+	<field name="current.shopCode" >
+		<field-validator type="requiredstring" >
+			<message key="requiredfield" />
+		</field-validator>
+	</field>
+
+
+
+	<!-- Field not null in database -->
+	<field name="current.customerCode" >
+		<field-validator type="requiredstring" >
+			<message key="requiredfield" />
+		</field-validator>
+	</field>
+
+
+
+	<!-- Field not null in database -->
+	<field name="current.employeeCode" >
+		<field-validator type="requiredstring" >
+			<message key="requiredfield" />
+		</field-validator>
+	</field>
+
+
+
+
+
+
+</validators>
+
+
+
