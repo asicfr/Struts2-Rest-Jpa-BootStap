@@ -21,11 +21,12 @@ public abstract class GenericAction<T, PK> extends ActionSupport
 	
 	protected final Logger LOG = LoggerFactory.getLogger(GenericAction.class);
 	
-	protected PK restid = null;
 	protected List<T> searchResult = null ;
 	protected abstract IServices<T, PK> getServices();
 	protected abstract T getInnerCurrent();
 	protected abstract void setInnerCurrent(T t);
+	protected abstract PK getInnerRestid();
+	protected abstract void setInnerRestid(final PK restIdIn);
 
 	@Override
 	public void validate() {
@@ -43,24 +44,6 @@ public abstract class GenericAction<T, PK> extends ActionSupport
 				LOG.error("Action error : " + chaine);
 			}
 		}
-	}
-
-	/**
-	 * Get restid
-	 * @return restid
-	 */
-	public PK getRestid() {
-		if (LOG.isDebugEnabled()) LOG.debug("getRestid");
-		return restid;
-	}
-
-	/**
-	 * Set restid
-	 * @param id restid
-	 */
-	public void setRestid(final PK id) {
-		if (LOG.isDebugEnabled()) LOG.debug("setRestid");
-		this.restid = id;
 	}
 
 	/**
@@ -91,9 +74,9 @@ public abstract class GenericAction<T, PK> extends ActionSupport
 	public String delete() throws Exception {
 		if (LOG.isDebugEnabled()) {
 			LOG.debug("Method 'delete'");
-			LOG.debug("Id send : " + restid );
+			LOG.debug("Id send : " + this.getInnerRestid() );
 		}
-		getServices().delete(restid);
+		getServices().delete(this.getInnerRestid());
 		addActionMessage(getText("entity.delete"));
 		return RESULT_FORM ;
 	}
@@ -155,7 +138,7 @@ public abstract class GenericAction<T, PK> extends ActionSupport
 	public String clear() {
 		if (LOG.isDebugEnabled()) LOG.debug("Method 'clear'");
 		this.setInnerCurrent(null);
-		this.restid = null;
+		this.setInnerRestid(null);
 		this.searchResult = null;
 		return RESULT_FORM ;
 	}
@@ -165,7 +148,7 @@ public abstract class GenericAction<T, PK> extends ActionSupport
 	 * @throws Exception
 	 */
 	protected void innerload() throws Exception {
-		this.setInnerCurrent(getServices().load(restid));
+		this.setInnerCurrent(getServices().load(this.getInnerRestid()));
 		if ( this.getInnerCurrent() != null ) {
 			addActionMessage(getText("entity.found"));
 		} else {

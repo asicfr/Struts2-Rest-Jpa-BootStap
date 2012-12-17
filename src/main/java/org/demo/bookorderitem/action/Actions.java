@@ -1,6 +1,6 @@
 /*
  * Action class 
- * Created on 17 déc. 2012 ( Time 14:48:56 )
+ * Created on 17 déc. 2012 ( Time 15:39:59 )
  */
 
 package org.demo.bookorderitem.action;
@@ -19,6 +19,7 @@ public class Actions extends GenericAction<BookOrderItem, BookOrderItemKey>
 	private IServices<BookOrderItem, BookOrderItemKey> service = new BookOrderItemServices();
 
 	private BookOrderItem current = null ;
+	private BookOrderItemKey restid = null;
 	
 	public Actions() {
 		super();
@@ -52,6 +53,24 @@ public class Actions extends GenericAction<BookOrderItem, BookOrderItemKey>
 		this.current = currentIn;
 	}
 
+	/**
+	 * Get restid
+	 * @return restid
+	 */
+	public BookOrderItemKey getRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getRestid");
+		return restid;
+	}
+
+	/**
+	 * Set restid
+	 * @param id restid
+	 */
+	public void setRestid(final BookOrderItemKey id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setRestid");
+		this.restid = id;
+	}
+
 	@Override
 	protected BookOrderItem getInnerCurrent() {
 		if (LOG.isDebugEnabled()) LOG.debug("getCurrent");
@@ -62,6 +81,18 @@ public class Actions extends GenericAction<BookOrderItem, BookOrderItemKey>
 	protected void setInnerCurrent(final BookOrderItem currentIn) {
 		if (LOG.isDebugEnabled()) LOG.debug("setCurrent");
 		this.current = currentIn;
+	}
+
+	@Override
+	protected BookOrderItemKey getInnerRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getInnerRestid");
+		return this.restid;
+	}
+
+	@Override
+	protected void setInnerRestid(final BookOrderItemKey id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setInnerRestid");
+		this.restid = id;
 	}
 	
 }

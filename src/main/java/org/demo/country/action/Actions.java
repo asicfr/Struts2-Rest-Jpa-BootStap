@@ -1,6 +1,6 @@
 /*
  * Action class 
- * Created on 17 déc. 2012 ( Time 14:48:56 )
+ * Created on 17 déc. 2012 ( Time 15:39:59 )
  */
 
 package org.demo.country.action;
@@ -18,6 +18,7 @@ public class Actions extends GenericAction<Country, String>
 	private IServices<Country, String> service = new CountryServices();
 
 	private Country current = null ;
+	private String restid = null;
 	
 	public Actions() {
 		super();
@@ -51,6 +52,24 @@ public class Actions extends GenericAction<Country, String>
 		this.current = currentIn;
 	}
 
+	/**
+	 * Get restid
+	 * @return restid
+	 */
+	public String getRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getRestid");
+		return restid;
+	}
+
+	/**
+	 * Set restid
+	 * @param id restid
+	 */
+	public void setRestid(final String id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setRestid");
+		this.restid = id;
+	}
+
 	@Override
 	protected Country getInnerCurrent() {
 		if (LOG.isDebugEnabled()) LOG.debug("getCurrent");
@@ -61,6 +80,18 @@ public class Actions extends GenericAction<Country, String>
 	protected void setInnerCurrent(final Country currentIn) {
 		if (LOG.isDebugEnabled()) LOG.debug("setCurrent");
 		this.current = currentIn;
+	}
+
+	@Override
+	protected String getInnerRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getInnerRestid");
+		return this.restid;
+	}
+
+	@Override
+	protected void setInnerRestid(final String id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setInnerRestid");
+		this.restid = id;
 	}
 	
 }

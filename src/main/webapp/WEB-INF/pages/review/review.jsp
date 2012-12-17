@@ -1,5 +1,5 @@
 <%-- Detail screen for Review entity      --%>
-<%-- Created on 17 déc. 2012 ( Time 14:48:57 )  --%>
+<%-- Created on 17 déc. 2012 ( Time 15:40:00 )  --%>
 
 
   				

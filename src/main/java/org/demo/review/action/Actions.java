@@ -1,6 +1,6 @@
 /*
  * Action class 
- * Created on 17 déc. 2012 ( Time 14:48:57 )
+ * Created on 17 déc. 2012 ( Time 15:40:00 )
  */
 
 package org.demo.review.action;
@@ -19,6 +19,7 @@ public class Actions extends GenericAction<Review, ReviewKey>
 	private IServices<Review, ReviewKey> service = new ReviewServices();
 
 	private Review current = null ;
+	private ReviewKey restid = null;
 	
 	public Actions() {
 		super();
@@ -52,6 +53,24 @@ public class Actions extends GenericAction<Review, ReviewKey>
 		this.current = currentIn;
 	}
 
+	/**
+	 * Get restid
+	 * @return restid
+	 */
+	public ReviewKey getRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getRestid");
+		return restid;
+	}
+
+	/**
+	 * Set restid
+	 * @param id restid
+	 */
+	public void setRestid(final ReviewKey id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setRestid");
+		this.restid = id;
+	}
+
 	@Override
 	protected Review getInnerCurrent() {
 		if (LOG.isDebugEnabled()) LOG.debug("getCurrent");
@@ -62,6 +81,18 @@ public class Actions extends GenericAction<Review, ReviewKey>
 	protected void setInnerCurrent(final Review currentIn) {
 		if (LOG.isDebugEnabled()) LOG.debug("setCurrent");
 		this.current = currentIn;
+	}
+
+	@Override
+	protected ReviewKey getInnerRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getInnerRestid");
+		return this.restid;
+	}
+
+	@Override
+	protected void setInnerRestid(final ReviewKey id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setInnerRestid");
+		this.restid = id;
 	}
 	
 }

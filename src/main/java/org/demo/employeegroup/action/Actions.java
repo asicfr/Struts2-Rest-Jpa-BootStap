@@ -1,6 +1,6 @@
 /*
  * Action class 
- * Created on 17 déc. 2012 ( Time 14:48:56 )
+ * Created on 17 déc. 2012 ( Time 15:40:00 )
  */
 
 package org.demo.employeegroup.action;
@@ -19,6 +19,7 @@ public class Actions extends GenericAction<EmployeeGroup, EmployeeGroupKey>
 	private IServices<EmployeeGroup, EmployeeGroupKey> service = new EmployeeGroupServices();
 
 	private EmployeeGroup current = null ;
+	private EmployeeGroupKey restid = null;
 	
 	public Actions() {
 		super();
@@ -52,6 +53,24 @@ public class Actions extends GenericAction<EmployeeGroup, EmployeeGroupKey>
 		this.current = currentIn;
 	}
 
+	/**
+	 * Get restid
+	 * @return restid
+	 */
+	public EmployeeGroupKey getRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getRestid");
+		return restid;
+	}
+
+	/**
+	 * Set restid
+	 * @param id restid
+	 */
+	public void setRestid(final EmployeeGroupKey id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setRestid");
+		this.restid = id;
+	}
+
 	@Override
 	protected EmployeeGroup getInnerCurrent() {
 		if (LOG.isDebugEnabled()) LOG.debug("getCurrent");
@@ -62,6 +81,18 @@ public class Actions extends GenericAction<EmployeeGroup, EmployeeGroupKey>
 	protected void setInnerCurrent(final EmployeeGroup currentIn) {
 		if (LOG.isDebugEnabled()) LOG.debug("setCurrent");
 		this.current = currentIn;
+	}
+
+	@Override
+	protected EmployeeGroupKey getInnerRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getInnerRestid");
+		return this.restid;
+	}
+
+	@Override
+	protected void setInnerRestid(final EmployeeGroupKey id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setInnerRestid");
+		this.restid = id;
 	}
 	
 }

@@ -1,6 +1,6 @@
 /*
  * Action class 
- * Created on 17 déc. 2012 ( Time 14:48:57 )
+ * Created on 17 déc. 2012 ( Time 15:40:01 )
  */
 
 package org.demo.synopsis.action;
@@ -18,6 +18,7 @@ public class Actions extends GenericAction<Synopsis, Integer>
 	private IServices<Synopsis, Integer> service = new SynopsisServices();
 
 	private Synopsis current = null ;
+	private Integer restid = null;
 	
 	public Actions() {
 		super();
@@ -51,6 +52,24 @@ public class Actions extends GenericAction<Synopsis, Integer>
 		this.current = currentIn;
 	}
 
+	/**
+	 * Get restid
+	 * @return restid
+	 */
+	public Integer getRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getRestid");
+		return restid;
+	}
+
+	/**
+	 * Set restid
+	 * @param id restid
+	 */
+	public void setRestid(final Integer id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setRestid");
+		this.restid = id;
+	}
+
 	@Override
 	protected Synopsis getInnerCurrent() {
 		if (LOG.isDebugEnabled()) LOG.debug("getCurrent");
@@ -61,6 +80,18 @@ public class Actions extends GenericAction<Synopsis, Integer>
 	protected void setInnerCurrent(final Synopsis currentIn) {
 		if (LOG.isDebugEnabled()) LOG.debug("setCurrent");
 		this.current = currentIn;
+	}
+
+	@Override
+	protected Integer getInnerRestid() {
+		if (LOG.isDebugEnabled()) LOG.debug("getInnerRestid");
+		return this.restid;
+	}
+
+	@Override
+	protected void setInnerRestid(final Integer id) {
+		if (LOG.isDebugEnabled()) LOG.debug("setInnerRestid");
+		this.restid = id;
 	}
 	
 }
